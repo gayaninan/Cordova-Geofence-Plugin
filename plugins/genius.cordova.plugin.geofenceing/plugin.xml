@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="genius.cordova.plugin.geofenceing"
+    version="0.3.14-dev">
+
+    <name>Geofencing</name>
+    <description>Genius Cordova Geofence Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,geofence</keywords>
+    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-vibration.git</repo>
+    <issue>https://issues.apache.org/jira/browse/CB/component/12320639</issue>
+
+    <js-module src="www/geofencing.js" name="geofencing">
+        <merges target="geofencing" />
+	</js-module>
+	
+	<dependency id="android.support.v4" />
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Geofencing">
+                <param name="android-package" value="genius.cordova.plugin.geofencing.Geofencing"/>
+            </feature>
+        </config-file>
+
+        <framework src="src/android/GooglePlayServices" custom="true" />
+		
+        <source-file src="src/android/Geofencing.java" target-dir="src/genius/cordova/plugin/geofencing/Geofencing" />
+		
+		<source-file src="src/android/GeofenceTransitionMonitorService.java" target-dir="src/genius/cordova/plugin/geofencing/Geofencing" />
+		<source-file src="src/android/GeofenceError.java" target-dir="src/genius/cordova/plugin/geofencing/Geofencing" />
+		
+		
+		
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+
+            <uses-permission android:name="android.permission.VIBRATE"/>
+			<uses-permission android:name="android.permission.INTERNET" />
+		    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+		    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+		    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+        </config-file>
+		
+		    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service android:name="genius.cordova.plugin.geofencing.GeofenceTransitionMonitorService" />
+		</config-file>
+		
+    </platform>
+</plugin>

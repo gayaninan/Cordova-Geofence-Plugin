@@ -1,0 +1,14 @@
+{
+    "genius.cordova.plugin.geofenceing": {
+        "source": {
+            "type": "local",
+            "path": "D:\\cordova\\plugins\\geofence"
+        }
+    },
+    "android.support.v4": {
+        "source": {
+            "type": "registry",
+            "id": "android.support.v4"
+        }
+    }
+}
